@@ -20,11 +20,13 @@ use App\Http\Controllers\TestController;
 
 //タスク管理システム
 Route::get('/', [AuthController::class, 'index']);
-Route::get('/task/list',[TaskController::class, 'list']);
+Route::get('/task/list', [TaskController::class, 'list']);
+Route::post('/login', [AuthController::class, 'login']);
 
 //テスト用
 Route::get('/welcome', [WelcomeController::class, 'index']);
 Route::get('/welcome/second', [WelcomeController::class, 'second']);
+
 //form入力テスト用
-Route::get('/test', [TestController::class, 'index']);
+Route::get('/test', [Testcontroller::class, 'index']);
 Route::post('/test/input', [TestController::class, 'input']);

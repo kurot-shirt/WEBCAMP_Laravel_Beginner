@@ -7,11 +7,11 @@
     @if ($errors->any())
         <div>
         @foreach ($errors->all() as $error)
-            {{ $error }}<br>
+             {{ $error }}<br>
         @endforeach
-    @endif
-    
         </div>
+    @endif
+
 	<form action="/test/input" method="post">
 		@csrf
 		email:<input name="email" value="{{ old('email') }}"><br>
