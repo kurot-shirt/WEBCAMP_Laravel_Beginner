@@ -52,7 +52,7 @@
 		   <td><a href="./edit.html">編集</a>
 		   <td><form action="./top.html"><button>完了</button></form>
       </table>
-      
+
      <!--ページネーション-->
       現在 1 ページ目<br>
       <a href="./top.html">最初のページ(未実装</a> /
@@ -61,6 +61,6 @@
       <br>
       <hr>
       <menu label="リンク">
-      <a href="./index.html">ログアウト(未実装)</a><br>
+      <a href="/logout">ログアウト</a><br>
       </menu>
     @endsection
