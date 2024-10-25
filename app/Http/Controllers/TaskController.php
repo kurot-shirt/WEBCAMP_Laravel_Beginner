@@ -14,7 +14,7 @@ class TaskController extends Controller
     {
         //1page辺りの表示アイテム数を設定
         $per_page = 2;
-        
+
         //一覧の取得
         $list = TaskModel::where('user_id', Auth::id())
                          ->orderBy('priority', 'DESC',)
@@ -22,7 +22,7 @@ class TaskController extends Controller
                          ->orderBy('created_at')
                          ->paginate($per_page);
                         // ->get();
-        /*                 
+        /*
         $sql = TaskModel::where('user_id', Auth::id())
                         ->orderBy('priority', 'DESC')
                         ->orderBy('period')
@@ -31,7 +31,7 @@ class TaskController extends Controller
         //var_dump($sql);
         //echo "<pre>\n"; var_dump($sql, $list); exit;
         */
-        
+
     	return view('task.list', ['list' => $list]);
     }
 
@@ -61,5 +61,21 @@ class TaskController extends Controller
 
         //リダイレクト
         return redirect('/task/list');
+    }
+    //タスクの詳細閲覧
+    public function detail($task_id)
+    {
+        //task_idのレコードを取得する
+        $task = TaskModel::find($task_id);
+        if ($task === null) {
+            return redirect('/task/list');
+        }
+        //本人以外のタスクならNGとする
+        if ($task->user_id !== Auth::id()) {
+            return redirect('/task/list');
+        }
+
+        //テンプレートに「取得したレコード」の情報を渡す
+        return view('task.detail', ['task' => $task]);
     }
 }
