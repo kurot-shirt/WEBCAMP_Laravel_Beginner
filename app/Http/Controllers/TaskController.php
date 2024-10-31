@@ -73,7 +73,7 @@ class TaskController extends Controller
             'period' => '期限',
             'detail' => 'タスク詳細',
             'created_at' => 'タスク作成日',
-            'updated' => 'タスク修正日',
+            'updated_at' => 'タスク修正日',
             ];
 
         //「ダウンロードさせたいcsv」を作成する
@@ -94,8 +94,9 @@ class TaskController extends Controller
             foreach($data_list as $k => $v) {
                 if ($k === 'priority') {
                     $awk[] = $datum->getPriorityString();
-                }else {
-                    $awk[] = $datum->$k;               }
+                } else {
+                    $awk[] = $datum->$k;
+                }
             }
             //csvの1行を出力
             $file->fputcsv($awk);
@@ -106,7 +107,7 @@ class TaskController extends Controller
 
         //文字コードを変換する
         $csv_string_sjis = mb_convert_encoding($csv_string, 'SJIS', 'UTF-8');
-        
+
         //ダウンロードファイル名の作成
         $download_filemane = 'task_list.' . date('Ymd') . '.csv';
         //csvを出力する
