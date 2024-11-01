@@ -14,7 +14,7 @@ class Authenticate extends Middleware
     {
         if (! $request->expectsJson()) {
             if (0 === strncasecmp($request->path(), 'admin/', strlen('admin/'))) {
-                return route('front.index');
+                return route('admin.index');
             } else {
                 return route('front.index');
             }
