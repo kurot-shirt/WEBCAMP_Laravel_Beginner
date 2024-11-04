@@ -26,7 +26,7 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 //タスク管理システム
 Route::get('/', [AuthController::class, 'index'])->name('front.index');
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/', [UserController::class, 'index']);
+Route::get('/user/register', [UserController::class, 'index']);
 Route::post('/user/register', [Usercontroller::class, 'register']);
 //認可処理
 Route::middleware(['auth'])->group(function () {

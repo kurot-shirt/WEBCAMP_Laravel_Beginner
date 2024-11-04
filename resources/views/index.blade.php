@@ -4,6 +4,11 @@
 {{-- メインコンテンツ --}}
 @section('contets')
 	<h1>ログイン</h1>
+	@if(session('message'))
+	    <div>
+	    	{{ session('message') }}
+	    </div>
+	@endif
 	
 	@if ($errors->any())
 	    <div>

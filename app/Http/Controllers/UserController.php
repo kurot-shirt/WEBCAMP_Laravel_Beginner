@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRegisterPost;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User as UserModel;
 
 class UserController extends Controller
@@ -11,7 +12,7 @@ class UserController extends Controller
 	//登録画面表示用
     public function index()
     {
-    	return view('index');
+    	return view('user.register');
     }
 
     //データベース登録処理用
@@ -20,11 +21,17 @@ class UserController extends Controller
     	//validate済み
 
     	//データの取得
-    	$validatedDate = $request->validated();
-    	//$datum = $request->validated();
+    	$datum = $request->validated();
 
-    	//$datum['password'] = Hash::make($datum['password']);
+    	$datum['password'] = Hash::make($datum['password']);
 
-        return view('user.register', ['datum' => $validateDate]);
+    	//テーブルへのINSERT
+    	try {
+    	    $r = UserModel::create($datum);
+    	} catch(\Throeabele $e) {
+    	    echo $e->getMessage();
+    	    exit;
+    	}
+        return redirect('/')->with('message', 'ユーザを登録しました!!');
     }
 }
