@@ -74,7 +74,7 @@ class TaskController extends Controller
             'detail' => 'タスク詳細',
             'created_at' => 'タスク作成日',
             'updated_at' => 'タスク修正日',
-            ];
+        ];
 
         //「ダウンロードさせたいcsv」を作成する
         //データを取得する
